@@ -13,10 +13,10 @@
 }
 
 .nav-container {
-  display: flex;
   justify-content: space-around;
-  width: 70%;
   align-items: center;
+  width: 70%;
+  display: flex;
 }
 
 .logo-img {
@@ -40,16 +40,138 @@
 }
 
 .restarurant-card {
-  width: 20%;
-  /* margin: 10px; */
+  width: 15%;
+  margin: 10px;
+
+  box-sizing: border-box;
 }
 
 .restaurant-img img {
-  height: 300px;
-  width: 220px;
+  height: 200px;
+  width: 100%;
+  border: 1px solid white;
+  border-radius: 30px;
+}
+
+.restaurant-info {
+  padding: 0 10px;
 }
 
 .btn {
-  margin: 10px;
   cursor: pointer;
+}
+
+.filter {
+  width: 40%;
+  margin: 20px 0px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.fake-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.fake-card {
+  background-color: #f0f0f0;
+  width: 15%;
+  margin: 10px;
+  height: 300px;
+  box-sizing: border-box;
+  border: 1px solid #f0f0f0;
+  border-radius: 30px;
+}
+
+.fake-menu {
+  background-color: #000;
+  width: 90%;
+  margin: 10px;
+  height: 150px;
+  border: 1px solid #f0f0f0;
+  border-radius: 30px;
+}
+
+.header-btn {
+  background-color: #f4511e;
+  border: 1px solid #f4511e;
+  border-radius: 20px;
+  color: white;
+  padding: 10px 20px;
+  transition: 0.3s;
+  cursor: pointer;
+  /* display: inline-block; */
+}
+
+.header-btn :hover {
+  opacity: 1;
+}
+
+.login-out-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 14%;
+}
+
+.res-info {
+  border: 1px solid #ffffff;
+  border-radius: 20px;
+  padding: 10px 20px;
+}
+
+.search-dishes {
+  width: 100%;
+  background-color: rgba(240, 240, 240, 0.609);
+  height: 30px;
+  border: 1px solid #f0f0f0;
+  border-radius: 10px;
+}
+
+.menu-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+}
+.menu-heading {
+  font-weight: 600;
+}
+
+.image-and-adder {
+  width: auto;
+}
+
+.divider {
+  height: 16px;
+  border-bottom: 16px solid rgba(2, 6, 12, 0.0509803922);
+}
+
+main {
+  padding: 0px 10px;
+}
+
+.add-btn-with-img {
+  padding: 10px 20px;
+  color: green;
+  font-size: large;
+  font-weight: 500;
+  position: relative;
+  bottom: 10%;
+  right: 50%;
+  cursor: pointer;
+  border: 1px solid #f0f0f089;
+  border-radius: 10px;
+}
+
+.add-btn-without-img {
+  position: relative;
+  top: 60%;
+  right: 200%;
+  padding: 10px 20px;
+  color: green;
+  font-size: large;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid #f0f0f089;
+  border-radius: 10px;
 }

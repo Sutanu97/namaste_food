@@ -9,8 +9,10 @@ const RestaurantCard = ({ resData }) => (
       ></img>
     </div>
     <div className="restaurant-info">
-      <p>{resData.name}</p>
+      <b>{resData.name}</b>
       <p>{resData.areaName}</p>
+      <p>{resData.costForTwo}</p>
+      <p>{resData.cuisines.join(", ")}</p>
     </div>
   </div>
 );

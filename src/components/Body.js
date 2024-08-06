@@ -1,26 +1,72 @@
 import CardContainer from "./CardContainer";
-import data from "../utils/MockData";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Shimmer from "./Shimmer";
 
 const Body = () => {
-  let mockData =
-    data.data.success.cards[1].gridWidget.gridElements.infoWithStyle
-      .restaurants;
-  const [restaurantList, setRestaurantList] = useState(mockData);
+  const [restaurantList, setRestaurantList] = useState([]);
+  const [allRestaurants, setAllRestaurants] = useState([]);
+  const [searchText, setSearchText] = useState("");
+  const [topRestaurantSelection, setTopRestaurantSelection] = useState(
+    "GET TOP RATED RESTAURANTS"
+  );
 
-  return (
+  useEffect(() => {
+    const loadRestaurants = async () => {
+      let readStream = await fetch(
+        "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.6139298&lng=77.2088282&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+      );
+      let data = await readStream.json();
+      setRestaurantList(
+        data?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
+          ?.restaurants
+      );
+
+      setAllRestaurants(
+        data?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
+          ?.restaurants
+      );
+    };
+
+    loadRestaurants();
+  }, []);
+
+  return restaurantList.length == 0 ? (
+    <Shimmer />
+  ) : (
     <>
-      <button
-        type="button"
-        className="btn"
-        onClick={() => {
-          setRestaurantList(
-            restaurantList.filter((res) => res.info.avgRating >= 4.2)
-          );
-        }}
-      >
-        GET TOP RATED RESTAURANTS
-      </button>
+      <div className="filter">
+        <div>
+          <input
+            type="text"
+            placeholder="search restaurants"
+            value={searchText}
+            onChange={(e) => {
+              setSearchText(e.target.value);
+            }}
+          />
+          <input
+            type="button"
+            onClick={(e) => {
+              console.log(allRestaurants, searchText);
+              console.log(
+                allRestaurants.filter((e) =>
+                  e.info.name.toLowerCase().includes(searchText.toLowerCase())
+                )
+              );
+              setRestaurantList(
+                allRestaurants.filter((e) =>
+                  e.info.name.toLowerCase().includes(searchText.toLowerCase())
+                )
+              );
+            }}
+            value={"SEARCH"}
+          />
+        </div>
+
+        <button type="button" className="btn" onClick={() => {}}>
+          {topRestaurantSelection}
+        </button>
+      </div>
       <CardContainer resList={restaurantList} />
     </>
   );
